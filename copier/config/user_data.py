@@ -68,6 +68,8 @@ def ask_interactively(
     message += f"{bold | question}? Format: {type_name}\n{emoji} "
     lexer_map = {"json": JsonLexer, "yaml": YamlLexer}
     lexer = lexer_map.get(type_name)
+    # HACK https://github.com/prompt-toolkit/python-prompt-toolkit/issues/1071
+    # FIXME When fixed, use prompt toolkit too for choices and bools
     # Use the correct method to ask
     if type_name == "bool":
         return ask(message, default)
